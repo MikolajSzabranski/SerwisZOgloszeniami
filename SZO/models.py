@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django import forms
 
 # Create your models here.
 
-typesUser = (('Job seeker', 'Job seeker'), ('Host', 'Host'))
+typesUser = (('seeker', 'Seeker'), ('host', 'Host'))
 
 
 class CustomUser(models.Model):
@@ -12,3 +13,9 @@ class CustomUser(models.Model):
     password1 = models.CharField(max_length=30)
     password2 = models.CharField(max_length=30)
     typeUser = models.CharField(max_length=100, choices=typesUser, null=True)
+
+class JobOffer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.CharField(max_length=400)
+    title = models.CharField(max_length=100)
+

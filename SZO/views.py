@@ -1,6 +1,6 @@
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 
@@ -8,10 +8,6 @@ from django.shortcuts import render, redirect
 
 def home(response):
     return render(response, "SZO/home.html", {})
-
-
-def login(response):
-    return render(response, "SZO/login.html", {})
 
 
 def register(response):

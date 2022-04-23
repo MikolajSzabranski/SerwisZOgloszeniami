@@ -1,0 +1,11 @@
+{% extends 'SZO/base.html' %}
+
+{% block title %}List{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated and user.groups.all.0.name == 'host' %}
+    <h1>Offer creator</h1>
+{% else %}
+    <h1>Access denied</h1>
+{% endif %}
+{% endblock %}

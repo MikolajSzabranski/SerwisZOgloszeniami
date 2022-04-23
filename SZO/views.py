@@ -18,6 +18,10 @@ def offer(response):
     return render(response, "SZO/offer.html", {})
 
 
+def addOffer(response):
+    return render(response, "SZO/addOffer.html", {})
+
+
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)

@@ -5,10 +5,10 @@
 {% block content %}
 {% if user.is_authenticated %}
     <h1>Login successful. Logged user: {{user}}</h1>
-    <h3>You can change your password <a href="/change_password">here</a></h3>
-    <h3><a href="/home">Logout</a></h3>
+    <h3>Change your password <a href="/change_password">here</a></h3>
+    <h3><a href="/">Logout</a></h3>
 {% else %}
     <h1>You are not logged in!</h1>
-    <p>Please login <a href="/login">here</a></p>
+    <p>Login to use website<a href="/login">here</a></p>
 {% endif %}
 {% endblock %}

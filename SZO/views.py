@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 
@@ -8,6 +9,10 @@ from django.shortcuts import render, redirect
 
 def home(response):
     return render(response, "SZO/home.html", {})
+
+
+def offer(response):
+    return render(response, "SZO/offer.html", {})
 
 
 def register(response):
@@ -20,3 +25,9 @@ def register(response):
         form = UserCreationForm()
 
     return render(response, "SZO/register.html", {"form": form})
+
+
+def logout(response):
+    logout(response)
+    messages.success(response, "You were logged out!")
+    return render(response, "SZO/home.html", {})

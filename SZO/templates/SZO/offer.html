@@ -1,0 +1,11 @@
+{% extends 'SZO/base.html' %}
+
+{% block title %}List{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>List here</h1>
+{% else %}
+    <h1>Access denied</h1>
+{% endif %}
+{% endblock %}

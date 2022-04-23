@@ -48,10 +48,15 @@
 <body>
 <div class="sidenav">
     <a href="/">Home</a>
-    <a href="/login">Login</a>
     <a href="/register">Register</a>
+{% if user.is_authenticated %}
+    <a href="/offer">Job offer</a>
+    <a href="/logout">Logout</a>
+{% else %}
+    <a href="/login">Login</a>
+{% endif %}
 </div>
-<div id="content" , name="content" , class="main">
+<div id="content" name="content"  class="main">
     <div class="row justify-content-center">
         <div class="col-8">
             <h1 class="mt-2">Find your job!</h1>

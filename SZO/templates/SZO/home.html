@@ -2,13 +2,37 @@
 
 {% block title %}Home Page{% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>Login successful. Logged user: {{user}}</h1>
-    <h3>Change your password <a href="/change_password">here</a></h3>
-    <h3><a href="/">Logout</a></h3>
+    <h1>Logged user: {{user}}</h1>
+    <h3>Change your password <a style="color:blue" onclick="toggle();">here</a></h3>
+    <div id = "passwordChange">
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit">Save changes</button>
+        </form>
+    </div>
+
 {% else %}
     <h1>You are not logged in!</h1>
     <p>Login to use website<a href="/login">here</a></p>
 {% endif %}
+
+<script>
+      let toggle = () => {
+
+        let element = document.getElementById("passwordChange");
+        let hidden = element.getAttribute("hidden");
+
+        if (hidden) {
+           element.removeAttribute("hidden");
+        } else {
+           element.setAttribute("hidden", "hidden");
+        }
+      }
+</script>
+
 {% endblock %}

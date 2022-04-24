@@ -19,12 +19,13 @@ class CustomUserChangeForm(UserChangeForm):
         model = User
         fields = ('username', 'email')
 
+
 class CreateOffer(forms.Form):
+    title = forms.CharField(max_length=40)
     text = forms.CharField(max_length=1000)
-    title = forms.CharField(max_length=200)
     city = forms.CharField(max_length=100)
-    tel_number = forms.IntegerField(help_text='Enter telephone number:')
+    tel_number = forms.IntegerField(max_value=999999999, help_text='Enter telephone number:')
 
     class Meta:
         model = JobOffer
-        fields = ('title', 'text', 'city', 'tel_number')
+        fields = ('text', 'title', 'city', 'tel_number')

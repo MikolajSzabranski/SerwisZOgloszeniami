@@ -5,7 +5,7 @@
 {% block content %}
 {% if user.is_authenticated %}
     <h1>List here</h1>
-    {% for offer in offerts %}
+    {% for offer in offers %}
         <div name="jobOffer">
             <h3>Host: {{ offer.getUser }} Title: {{ offer.getTitle }} Text: {{ offer.getText }} City: {{ offer.getCity }} Tel: {{ offer.getTel }}</h3>
         </div>

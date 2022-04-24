@@ -10,8 +10,19 @@ from .models import CustomUser, JobOffer
 
 # Create your views here.
 
-def home(response):
-    return render(response, "SZO/home.html", {})
+def home(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('/')
+        else:
+            form = PasswordChangeForm()
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'SZO/home.html', {'form': form})
 
 
 def offer(response):
@@ -53,20 +64,4 @@ def register(response):
 
 def logout(response):
     logout(response)
-    messages.success(response, "You were logged out!")
     return render(response, "SZO/home.html", {})
-
-
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('/home')
-        else:
-            form = PasswordChangeForm()
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'SZO/home.html', {'form': form})

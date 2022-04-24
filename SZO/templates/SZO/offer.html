@@ -6,7 +6,7 @@
 {% if user.is_authenticated %}
     <h1>List here</h1>
     {% for offer in offers %}
-        <div name="jobOffer">
+        <div id="jobOffer">
             <h3>Host: {{ offer.getUser }} Title: {{ offer.getTitle }} Text: {{ offer.getText }} City: {{ offer.getCity }} Tel: {{ offer.getTel }}</h3>
         </div>
     {% endfor %}

@@ -25,6 +25,16 @@
     <button id="id_submit_btn" class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
 
+    <div id="myJobOffer">
+    {% if user.groups.all.0.name == 'host' %}
+        {% for offer in offers %}
+            {% if offer.getUser == user %}
+                <h3>Title: {{ offer.getTitle }}</h3>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </div>
+
 {% else %}
     <h1>You are not logged in!</h1>
     <p>Login to use website<a href="/login">here</a></p>

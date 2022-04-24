@@ -11,6 +11,7 @@ from .models import CustomUser, JobOffer
 # Create your views here.
 
 def home(request):
+    # user1 = request.user
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -18,11 +19,12 @@ def home(request):
             update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('/')
+            # return render(request, 'SZO/home.html', {'user': user1})
         else:
             form = PasswordChangeForm()
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'SZO/home.html', {'form': form})
+        return render(request, 'SZO/home.html', {'form': form})
 
 
 def offer(response):

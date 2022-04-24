@@ -14,9 +14,6 @@ class CustomUser(models.Model):
     password2 = models.CharField(max_length=30)
     typeUser = models.CharField(max_length=100, choices=typesUser, null=True)
 
-    def getCUser(self):
-        return self.user
-
 
 class JobOffer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

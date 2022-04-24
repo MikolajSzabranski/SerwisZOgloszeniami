@@ -14,8 +14,28 @@ class CustomUser(models.Model):
     password2 = models.CharField(max_length=30)
     typeUser = models.CharField(max_length=100, choices=typesUser, null=True)
 
+
 class JobOffer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.CharField(max_length=400)
-    title = models.CharField(max_length=100)
+    text = models.CharField(max_length=1000)
+    title = models.CharField(max_length=200)
+    city = models.CharField(max_length=100, default='Warszawa')
+    tel_number = models.IntegerField(default=000000000)
 
+    def __str__(self):
+        return self.text
+
+    def getText(self):
+        return self.text
+
+    def getTitle(self):
+        return self.title
+
+    def getCity(self):
+        return self.city
+
+    def getTel(self):
+        return self.tel_number
+
+    def getUser(self):
+        return self.user

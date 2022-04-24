@@ -1,10 +1,23 @@
 {% extends 'SZO/base.html' %}
 
-{% block title %}List{% endblock %}
+{% block title %}Offer creator{% endblock %}
+
+{% load crispy_forms_tags %}
 
 {% block content %}
 {% if user.is_authenticated and user.groups.all.0.name == 'host' %}
     <h1>Offer creator</h1>
+
+    <div class="content-section">
+		<form method="POST" class="form-group">
+			{% csrf_token %}
+			<legend class="border-bottom mb-3">Create an Job Offer</legend>
+			{{form|crispy}}
+
+			<button name="create" type="submit" class="btn btn-success">Post Offer!</button>
+		</form>
+	</div>
+
 {% else %}
     <h1>Access denied</h1>
 {% endif %}

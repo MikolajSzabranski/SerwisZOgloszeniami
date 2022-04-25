@@ -64,6 +64,10 @@ def register(response):
     return render(response, "register/register.html", {"form": form})
 
 
+def premiumUser(response):
+    return render(response, "SZO/premiumUser.html", {})
+
+
 def logout(response):
     logout(response)
     return render(response, "SZO/home.html", {})

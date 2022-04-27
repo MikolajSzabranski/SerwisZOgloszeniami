@@ -14,6 +14,12 @@ class RegisterForm(UserCreationForm):
         fields = ["username", "email", "password1", "password2", "typeUser"]
 
 
+class PayUForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User

@@ -6,8 +6,25 @@
 
 {% block content %}
 <div class="content-section">
+    {% csrf_token %}
     <form method="POST" class="form-group">
-
+        <div id="iddd">aaaaa</div>
+        <label><input id = "tempPremAcc" onchange="premiumChange();" type="checkbox">PREMIUM ACCOUNT</label>
     </form>
 </div>
+
+<script>
+      let premiumChange = () => {
+
+        let element = document.getElementById("iddd");
+        let hidden = element.getAttribute("hidden");
+
+        if (hidden) {
+           element.removeAttribute("hidden");
+        } else {
+           element.setAttribute("hidden", "hidden");
+        }
+      }
+</script>
+
 {% endblock %}

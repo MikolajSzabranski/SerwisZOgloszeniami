@@ -5,13 +5,12 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, CreateOffer
-from .models import CustomUser, JobOffer
+from .models import JobOffer
 
 
 # Create your views here.
 
 def home(request):
-    # user1 = request.user
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -19,7 +18,6 @@ def home(request):
             update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('/')
-            # return render(request, 'SZO/home.html', {'user': user1})
         else:
             form = PasswordChangeForm()
     else:

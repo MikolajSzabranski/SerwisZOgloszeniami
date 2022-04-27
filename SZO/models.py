@@ -7,12 +7,12 @@ from django import forms
 typesUser = (('seeker', 'Seeker'), ('host', 'Host'))
 
 
-class CustomUser(models.Model):
-    username = models.CharField(max_length=20)
-    email = models.EmailField(blank=True)
-    password1 = models.CharField(max_length=30)
-    password2 = models.CharField(max_length=30)
-    typeUser = models.CharField(max_length=100, choices=typesUser, null=True)
+# class CustomUser(models.Model):
+#     username = models.CharField(max_length=20)
+#     email = models.EmailField(blank=True)
+#     password1 = models.CharField(max_length=30)
+#     password2 = models.CharField(max_length=30)
+#     typeUser = models.CharField(max_length=100, choices=typesUser, null=True)
 
 
 class JobOffer(models.Model):
@@ -39,3 +39,6 @@ class JobOffer(models.Model):
 
     def getUser(self):
         return self.user
+
+    def getUsername(self):
+        return self.getUsername()

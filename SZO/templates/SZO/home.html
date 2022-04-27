@@ -25,10 +25,11 @@
     <button id="id_submit_btn" class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
 
-    <div id="myJobOffer">
+    <div id="myJobOffer"><br>
+        <h4>EZ{{request.user.username}}/{{offer.getUsername}}</h4>
     {% if user.groups.all.0.name == 'host' %}
         {% for offer in offers %}
-            {% if offer.getUser == user %}
+            {% if offer.getUsername == request.user.username %}
                 <h3>Title: {{ offer.getTitle }}</h3>
             {% endif %}
         {% endfor %}

@@ -5,26 +5,23 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <div class="content-section">
     {% csrf_token %}
+    {{form|crispy}}
     <form method="POST" class="form-group">
-        <div id="iddd">aaaaa</div>
-        <label><input id = "tempPremAcc" onchange="premiumChange();" type="checkbox">PREMIUM ACCOUNT</label>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">PREMIUM ACCOUNT</button>
     </form>
 </div>
 
 <script>
       let premiumChange = () => {
-
-        let element = document.getElementById("iddd");
-        let hidden = element.getAttribute("hidden");
-
-        if (hidden) {
-           element.removeAttribute("hidden");
-        } else {
-           element.setAttribute("hidden", "hidden");
-        }
+           g = Group.objects.get(name='premium');
+           g.user_set.add(request.user.username);
+           console.log('test');
       }
 </script>
 
+{% endif %}
 {% endblock %}

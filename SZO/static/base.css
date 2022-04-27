@@ -1,0 +1,58 @@
+html, body{
+    height: 100%;
+}
+html, .main{
+    background-color: rgb(170, 216, 44);
+    color: #f1f1f1;
+}
+.sidenav{
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+}
+.sidenav a {
+    padding: 6px 8px 6px 8px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    font-size: 28px;
+    transition: all 0.5s ease;
+    transform: scale(1);
+
+}
+.sidenav a:hover{
+    color: #f1f1f1;
+    transform: scale(1.2) perspective(1px);
+}
+.main{
+    margin-left: 160px;
+    padding: 0px 10px;
+    height: 100%;
+    background-image: url("images/sunset.jpg");
+    background-size: cover;
+    background-color: #050b4d;
+    background-blend-mode: lighten;
+}
+.help-text{
+    color: greenyellow;
+}
+div.absolute {
+    position: absolute;
+    width: 95%;
+    bottom: 5%;
+}
+.appName{
+    margin: auto;
+    width: 25vw;
+    text-align: center;
+    font-size: 3vw;
+    color: #d3d3d3;
+    font-family: "Comic Sans MS", bold, serif;
+}

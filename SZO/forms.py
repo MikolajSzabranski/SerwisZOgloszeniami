@@ -14,12 +14,6 @@ class RegisterForm(UserCreationForm):
         fields = ["username", "email", "password1", "password2", "typeUser"]
 
 
-class PayUForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'email')
-
-
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
@@ -30,7 +24,7 @@ class CreateOffer(forms.Form):
     title = forms.CharField(max_length=40)
     text = forms.CharField(max_length=1000)
     city = forms.CharField(max_length=100)
-    tel_number = forms.IntegerField(max_value=999999999, help_text='Enter telephone number:')
+    tel_number = forms.IntegerField(max_value=999999999, min_value=100000000, help_text='Enter telephone number:')
 
     class Meta:
         model = JobOffer

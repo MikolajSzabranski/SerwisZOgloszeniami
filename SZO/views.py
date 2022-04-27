@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, authenticate, update_session_auth
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, CreateOffer, PayUForm
+from .forms import RegisterForm, CreateOffer
 from .models import JobOffer
 
 
@@ -33,6 +33,8 @@ def offer(response):
 def addOffer(response):
     if response.method == "POST":
         form = CreateOffer(response.POST)
+        user = response.user
+        #if form.is_valid() and (JobOffer.objects.filter(username='myname', status=0).count() <= 3 or user.groups.filter(name="premium").exists()):
         if form.is_valid():
             user = response.user
             text = form.cleaned_data['text']
@@ -63,15 +65,6 @@ def register(response):
 
 
 def premiumUser(response):
-    if response.method == "POST":
-        form = PayUForm(response.POST)
-        if form.is_valid():
-            user = form.save()
-            group = Group.objects.get(name='premium')
-            group.user_set.add(response.user.username)
-            # return redirect("/login")
-    else:
-        form = PayUForm()
     return render(response, "SZO/premiumUser.html", {})
 
 

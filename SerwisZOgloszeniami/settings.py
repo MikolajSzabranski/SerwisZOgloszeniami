@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SZO.apps.SzoConfig',
     'crispy_forms',
-    'paywix',
 ]
 
 MIDDLEWARE = [

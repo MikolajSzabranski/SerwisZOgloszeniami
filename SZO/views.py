@@ -11,6 +11,7 @@ from .models import JobOffer
 # Create your views here.
 
 def home(request):
+    offers = JobOffer.objects.all()
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -22,7 +23,7 @@ def home(request):
             form = PasswordChangeForm()
     else:
         form = PasswordChangeForm(request.user)
-        return render(request, 'SZO/home.html', {'form': form})
+        return render(request, 'SZO/home.html', {'form': form, "offers": offers})
 
 
 def offer(response):
@@ -34,7 +35,7 @@ def addOffer(response):
     if response.method == "POST":
         form = CreateOffer(response.POST)
         user = response.user
-        #if form.is_valid() and (JobOffer.objects.filter(username='myname', status=0).count() <= 3 or user.groups.filter(name="premium").exists()):
+        # if form.is_valid() and (JobOffer.objects.filter(username='myname', status=0).count() <= 3 or user.groups.filter(name="premium").exists()):
         if form.is_valid():
             user = response.user
             text = form.cleaned_data['text']

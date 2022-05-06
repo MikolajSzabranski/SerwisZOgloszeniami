@@ -38,6 +38,3 @@ class JobOffer(models.Model):
 
     def getUser(self):
         return self.user
-
-    def getUsername(self):
-        return self.getUser()

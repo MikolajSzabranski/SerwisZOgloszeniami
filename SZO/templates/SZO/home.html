@@ -26,10 +26,9 @@
     </form>
 
     <div id="myJobOffer"><br>
-        <h4>EZ{{request.user.username}}/{{offer.getUsername}}</h4>
     {% if user.groups.all.0.name == 'host' %}
         {% for offer in offers %}
-            {% if offer.getUsername == request.user.username %}
+            {% if request.user.username == offer.getUsername %}
                 <h3>Title: {{ offer.getTitle }}</h3>
             {% endif %}
         {% endfor %}
@@ -38,7 +37,7 @@
 
 {% else %}
     <h1>You are not logged in!</h1>
-    <p>Login to use website<a href="/login">here</a></p>
+    <p>Login to use website <a href="/login">here</a></p>
 {% endif %}
 
 <script>

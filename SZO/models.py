@@ -40,4 +40,4 @@ class JobOffer(models.Model):
         return self.user
 
     def getUsername(self):
-        return self.getUsername()
+        return str(self.user)

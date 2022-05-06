@@ -10,6 +10,7 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),
     path("addOffer/", views.addOffer, name="addOffer"),
     path("premiumUser/", views.premiumUser, name="premiumUser"),
+    path("^accounts/", include('allauth.urls')),
 
     path('password_reset/',
          auth_views.PasswordResetView.as_view(template_name="passwordReset/password_reset_form.html"),

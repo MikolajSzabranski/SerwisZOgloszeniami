@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SZO.apps.SzoConfig',
     'crispy_forms',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

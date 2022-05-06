@@ -1,15 +1,16 @@
 from django.contrib import messages
 from django.contrib.auth import logout, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .forms import RegisterForm, CreateOffer
 from .models import JobOffer
 
 
 # Create your views here.
-
 def home(request):
     offers = JobOffer.objects.all()
     if request.method == 'POST':

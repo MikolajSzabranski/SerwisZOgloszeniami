@@ -26,10 +26,10 @@
     </form>
 
     <div id="myJobOffer"><br>
-        <h4>EZ{{request.user.username}}/{{offer.getUsername}}</h4>
+        <h4>EZ{{request.user.username}}/{{offer.getUser}}</h4>
     {% if user.groups.all.0.name == 'host' %}
         {% for offer in offers %}
-            {% if offer.getUsername == request.user.username %}
+            {% if offer.getUser == request.user.username %}
                 <h3>Title: {{ offer.getTitle }}</h3>
             {% endif %}
         {% endfor %}

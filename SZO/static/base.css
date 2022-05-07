@@ -56,3 +56,13 @@ div.absolute {
     color: #d3d3d3;
     font-family: "Comic Sans MS", bold, serif;
 }
+button:hover{
+    animation-name: button-change;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes button-change {
+    100%{
+        background-color: coral;
+    }
+}

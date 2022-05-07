@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-
 # Create your models here.
 
 typesUser = (('seeker', 'Seeker'), ('host', 'Host'))
@@ -19,7 +18,7 @@ class JobOffer(models.Model):
     title = models.CharField(max_length=40)
     text = models.CharField(max_length=1000)
     city = models.CharField(max_length=100, default='Warszawa')
-    tel_number = models.IntegerField(default=000000000)
+    tel_number = models.CharField(max_length=9)
 
     def __str__(self):
         return self.text

@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SZO.apps.SzoConfig',
     'crispy_forms',
-
+    'phonenumber_field',
     # 'django.contrib.sites',
     # 'allauth',
     # 'allauth.account',

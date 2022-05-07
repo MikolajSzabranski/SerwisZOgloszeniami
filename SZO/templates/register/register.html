@@ -1,17 +1,22 @@
 {% extends 'SZO/base.html' %}
 
 {% block title %}Register{% endblock %}
-
+<style>
+	form{
+		height: 20vw;
+		width: 20vw;
+	}
+</style>
 {% load crispy_forms_tags %}
 
 {% block content %}
-	<div class="content-section">
-		<form method="POST" class="form-group">
-			{% csrf_token %}
-			<legend class="border-bottom mb-3">Create an Account</legend>
-			{{form|crispy}}
-			<br>
-			<button name="create" type="submit" class="btn btn-lg btn-primary btn-block">Sign up!</button>
-		</form>
-	</div>
+<div class="content-section">
+	<form method="POST" class="form-group">
+		{% csrf_token %}
+		<legend class="border-bottom mb-3">Create an Account</legend>
+		{{form|crispy}}
+		<br>
+		<button name="create" type="submit" class="btn btn-lg btn-primary btn-block">Sign up!</button>
+	</form>
+</div>
 {% endblock %}

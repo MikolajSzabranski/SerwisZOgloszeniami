@@ -5,11 +5,7 @@ html, .main{
     background-color: rgb(170, 216, 44);
     color: #f1f1f1;
 }
-@import url("https://fonts.googleapis.com/css2?family=Asap&family=Roboto:ital,wght@0,500;0,900;1,500&display=swap");
-header .header-1{
-  background-image: repeating-radial-gradient(closest-side at 20px 20px,#553c9a, #ee4b2b, #553c9a);
-
-}
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 .sidenav{
     height: 100%;
     width: 160px;
@@ -63,18 +59,6 @@ div.absolute {
 .sidenav h6:hover{
     color: #ffdf00;
 }
-h1.appName {
-  margin: auto;
-  width: 25vw;
-  text-align: center;
-  font-size: 3vw;
-  font-family: "Comic Sans MS", bold, serif;
-  font-weight: 600;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-image: repeating-radial-gradient(farthest-side at 15px 18px,#0ee33f, #05faee, #a805fa);
-}
 button:hover{
     animation-name: button-change;
     animation-duration: 2s;
@@ -86,4 +70,46 @@ button:hover{
         transform: scale(1.2);
         border-radius: 50%;
     }
+}
+svg {
+    display: block;
+    font: 13.0em 'Montserrat';
+    width: center;
+    height: 80px;
+    margin: auto;
+}
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 12px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+.text-copy:nth-child(1){
+	stroke: #09e81c;
+	animation-delay: -1;
+}
+.text-copy:nth-child(2){
+	stroke: #5c05fc;
+	animation-delay: -2s;
+}
+.text-copy:nth-child(3){
+	stroke: #000000;
+	animation-delay: -3s;
+}
+.text-copy:nth-child(4){
+	stroke: #02f7d2;
+	animation-delay: -4s;
+}
+.text-copy:nth-child(5){
+	stroke: #fcfcfc;
+	animation-delay: -5s;
+}
+.text-copy:nth-child(6){
+	stroke: #748a34;
+	animation-delay: -6s;
+}
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
 }

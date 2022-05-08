@@ -46,7 +46,17 @@ html, .main{
 div.absolute {
     position: absolute;
     width: 95%;
-    bottom: 5%;
+    bottom: 7%;
+}
+.sidenav h6 {
+    font-size: 9px;
+    color: #f542d1;
+    position: absolute;
+    width: 95%;
+    bottom: 0.8%;
+}
+.sidenav h6:hover{
+    color: #ffdf00;
 }
 .appName{
     margin: auto;

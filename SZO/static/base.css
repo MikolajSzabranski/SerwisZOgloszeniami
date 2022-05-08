@@ -5,6 +5,11 @@ html, .main{
     background-color: rgb(170, 216, 44);
     color: #f1f1f1;
 }
+@import url("https://fonts.googleapis.com/css2?family=Asap&family=Roboto:ital,wght@0,500;0,900;1,500&display=swap");
+header .header-1{
+  background-image: repeating-radial-gradient(closest-side at 20px 20px,#553c9a, #ee4b2b, #553c9a);
+
+}
 .sidenav{
     height: 100%;
     width: 160px;
@@ -58,13 +63,17 @@ div.absolute {
 .sidenav h6:hover{
     color: #ffdf00;
 }
-.appName{
-    margin: auto;
-    width: 25vw;
-    text-align: center;
-    font-size: 3vw;
-    color: #d3d3d3;
-    font-family: "Comic Sans MS", bold, serif;
+h1.appName {
+  margin: auto;
+  width: 25vw;
+  text-align: center;
+  font-size: 3vw;
+  font-family: "Comic Sans MS", bold, serif;
+  font-weight: 600;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: repeating-radial-gradient(farthest-side at 15px 18px,#0ee33f, #05faee, #a805fa);
 }
 button:hover{
     animation-name: button-change;

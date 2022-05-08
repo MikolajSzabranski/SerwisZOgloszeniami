@@ -1,9 +1,41 @@
-html, body{
-    height: 100%;
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #021027;
 }
 html, .main{
     background-color: rgb(170, 216, 44);
     color: #f1f1f1;
+}
+registrationForm.form{
+    margin-top: 0.8vh;
+}
+@import url("https://fonts.googleapis.com/css2?family=Asap&family=Roboto:ital,wght@0,500;0,900;1,500&display=swap");
+header {
+  width: 100%;
+  height: 15vh;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+}
+header h1 {
+  position: relative;
+  left: 10%;
+  width: 80%;
+  height: 100%;
+  margin-top: 1.2vw;
+  font-size: 3.2vw;
+  color: transparent;
+  -webkit-background-clip:
+  text;
+  background-clip: text;
+}
+header .header-1{
+  background-image: repeating-radial-gradient(farthest-side at 2px 8px, #faee6e, #c7ba2e, #786f0d);
+}
+div .container{
+    font-size: 1.2vw;
 }
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 .sidenav{
@@ -36,7 +68,7 @@ html, .main{
     margin-left: 160px;
     padding: 0px 10px;
     height: 100%;
-    background-image: url("images/sunset.jpg");
+    background-image: url("images/sky.jpg");
     background-size: cover;
     background-color: #050b4d;
     background-blend-mode: lighten;
@@ -73,7 +105,7 @@ button:hover{
 }
 svg {
     display: block;
-    font: 13.0em 'Montserrat';
+    font: 18.0em 'Montserrat';
     width: center;
     height: 80px;
     margin: auto;
@@ -84,18 +116,18 @@ svg {
     stroke-dasharray: 6% 29%;
     stroke-width: 12px;
     stroke-dashoffset: 0%;
-    animation: stroke-offset 5.5s infinite linear;
+    animation: stroke-offset 6.5s infinite linear;
 }
 .text-copy:nth-child(1){
 	stroke: #09e81c;
 	animation-delay: -1;
 }
 .text-copy:nth-child(2){
-	stroke: #5c05fc;
+	stroke: #d56ef5;
 	animation-delay: -2s;
 }
 .text-copy:nth-child(3){
-	stroke: #000000;
+	stroke: #ffe600;
 	animation-delay: -3s;
 }
 .text-copy:nth-child(4){
@@ -107,7 +139,7 @@ svg {
 	animation-delay: -5s;
 }
 .text-copy:nth-child(6){
-	stroke: #748a34;
+	stroke: #e0e319;
 	animation-delay: -6s;
 }
 @keyframes stroke-offset{

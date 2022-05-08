@@ -6,7 +6,9 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>Logged user: {{user}}</h1><br>
+    <header>
+        <h1 class="header-1">Logged user: {{user}}</h1>
+    </header>
     <button onclick="toggle();" class="btn btn-lg btn-primary btn-block">Change password</button>
     <form id="id_password_change_form" method="POST" class="form-signin" hidden>
     {% csrf_token %}

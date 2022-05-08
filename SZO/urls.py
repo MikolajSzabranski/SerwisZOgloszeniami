@@ -1,8 +1,14 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.contrib import admin
+from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    # path('accounts/google/login/', auth_views.LoginView.as_view(template_name="registration/login.html"),name="loginGoogle"),
+
     path("", views.home, name="home"),
     path("", include("django.contrib.auth.urls")),
     path("register/", views.register, name="register"),
@@ -10,7 +16,6 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),
     path("addOffer/", views.addOffer, name="addOffer"),
     path("premiumUser/", views.premiumUser, name="premiumUser"),
-    # path("accounts/", include('allauth.urls')),
 
     path('password_reset/',
          auth_views.PasswordResetView.as_view(template_name="passwordReset/password_reset_form.html"),

@@ -26,15 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SZO.apps.SzoConfig',
     'crispy_forms',
-    'phonenumber_field',
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
-# SITE_ID = 1
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,23 +69,30 @@ WSGI_APPLICATION = 'SerwisZOgloszeniami.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# AUTHENTICATION_BACKENDS = {
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# }
-# ////////////////////////////////////////
-# AUTHENTICATION_BACKENDS = {
-#     'django.contrib.auth.backends.ModelBackend',
-#     'social_core.backends.google.GoogleOAuth2'
-# }
-#
-# SOCIAL_AUTH_GOOGLE_OATH2_KEY = "980361173803-1d6l95ir86qlmircpfp9eq2pm6voh1ld.apps.googleusercontent.com"
-# SOCIAL_AUTH_GOOGLE_OATH2_SECRET = "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"
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
+
+# SOCIAL_AUTH_GOOGLE_OATH2_KEY = "980361173803-r9lptd2n7pjuomfh3s3qfud95c39k2t7.apps.googleusercontent.com"
+# SOCIAL_AUTH_GOOGLE_OATH2_SECRET = "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"
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
 
@@ -138,9 +144,20 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 LOGIN_REDIRECT_URL = "/offer"
 LOGOUT_REDIRECT_URL = "/"
 
+# Additional configuration settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'myemailservicetotest@gmail.com'
 EMAIL_HOST_PASSWORD = 'mailservice'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+

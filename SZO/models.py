@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from captcha.fields import ReCaptchaField
+
 # Create your models here.
 
 typesUser = (('seeker', 'Seeker'), ('host', 'Host'))

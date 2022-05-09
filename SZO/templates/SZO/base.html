@@ -17,7 +17,7 @@
     {% if user.is_authenticated %}
     <a href="/offer">Job offer</a>
     {% if user.groups.all.0.name == 'host' %}
-    <a href="/addOffer">Add offer</a>
+        <a href="/addOffer">Add offer</a>
     {% endif %}
     <a href="/logout">Logout</a>
     <div class="absolute"><a href="/premiumUser">Premium user</a></div>

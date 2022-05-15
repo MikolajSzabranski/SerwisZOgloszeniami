@@ -31,7 +31,9 @@
     {% if user.groups.all.0.name == 'host' %}
         {% for offer in offers %}
             {% if request.user.username == offer.getUsername %}
-                <h3>Title: {{ offer.getTitle }}</h3>
+                <div id="jobOffer">
+                    <h3>Title: {{ offer.getTitle }}</h3>
+                </div>
             {% endif %}
         {% endfor %}
     {% endif %}

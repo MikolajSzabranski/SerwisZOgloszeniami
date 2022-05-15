@@ -8,14 +8,14 @@
     <h1 class="header-1">Current list of offers</h1>
 </header>
 
-<label for="selectBox">Number of ads per page: </label><br><br>
+<label for="selectBox">Number of ads per page: </label>
 <div class="perPage">
     <select id="selectBox">
         <option value="5" onclick="myFunction()">5</option>
         <option value="10" onclick="myFunction()">10</option>
         <option value="30" onclick="myFunction()">30</option>
     </select>
-</div>
+</div><br><br>
 
 {% for offer in offersList %}
 <div id="jobOffer">

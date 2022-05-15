@@ -1,3 +1,6 @@
+import json
+
+import app as app
 from django.contrib import messages
 from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
@@ -6,7 +9,7 @@ from django.shortcuts import render, redirect
 from captcha.fields import ReCaptchaField
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.core.paginator import Paginator
 from .forms import RegisterForm, CreateOffer
 from .models import JobOffer
 
@@ -30,7 +33,18 @@ def home(request):
 
 def offer(response):
     offers = JobOffer.objects.all()
-    return render(response, "SZO/offer.html", {"offers": offers})
+    perPage = 2
+    p = Paginator(offers, perPage)
+    page = response.GET.get('page')
+    offersList = p.get_page(page)
+    nums = "a" * offersList.paginator.num_pages
+
+    return render(response, "SZO/offer.html",
+                  {"offers": offers,
+                   "offersList": offersList,
+                   "nums": nums,
+                   "p": p}
+                  )
 
 
 def addOffer(response):

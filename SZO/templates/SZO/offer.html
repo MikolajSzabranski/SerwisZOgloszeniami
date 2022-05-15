@@ -4,15 +4,54 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <header>
-        <h1 class="header-1">Current list of offers</h1>
-    </header>
-    {% for offer in offers %}
-        <div id="jobOffer">
-            <h3>Host: {{ offer.getUser }} Title: {{ offer.getTitle }} Text: {{ offer.getText }} City: {{ offer.getCity }} Tel: {{ offer.getTel }}</h3>
-        </div>
-    {% endfor %}
+<header>
+    <h1 class="header-1">Current list of offers</h1>
+</header>
+
+<label for="selectBox">Number of ads per page: </label><br><br>
+<div class="perPage">
+    <select id="selectBox">
+        <option value="5" onclick="myFunction()">5</option>
+        <option value="10" onclick="myFunction()">10</option>
+        <option value="30" onclick="myFunction()">30</option>
+    </select>
+</div>
+
+{% for offer in offersList %}
+<div id="jobOffer">
+    <h3>Host: {{ offer.getUser }} Title: {{ offer.getTitle }} Text: {{ offer.getText }} City: {{ offer.getCity }} Tel:
+        {{ offer.getTel }}</h3>
+</div>
+{% endfor %}
+<br><br>
+<!-- Pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if offersList.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ offersList.previous_page_number }}">Prev</a></li>
+        {% endif %}
+
+        {% for i in nums %}
+        <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter}}</a></li>
+        {% endfor %}
+
+        {% if offersList.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ offersList.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ offersList.paginator.num_pages }}">&raquo Last</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+<!-- End of pagination -->
 {% else %}
-    <h1>Access denied</h1>
+<h1>Access denied</h1>
 {% endif %}
+
+<script>
+function myFunction() {
+  var x = document.getElementById("selectBox").value;
+}
+</script>
+
 {% endblock %}

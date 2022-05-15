@@ -17,6 +17,11 @@ from .models import JobOffer
 # Create your views here.
 def home(request):
     offers = JobOffer.objects.all()
+    perPage = 2
+    p = Paginator(offers, perPage)
+    page = request.GET.get('page')
+    offersList = p.get_page(page)
+    nums = "a" * offersList.paginator.num_pages
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -28,12 +33,16 @@ def home(request):
             form = PasswordChangeForm()
     else:
         form = PasswordChangeForm(request.user)
-        return render(request, 'SZO/home.html', {'form': form, "offers": offers})
+        return render(request, 'SZO/home.html',
+                      {'form': form,
+                       "offers": offers,
+                       "offersList": offersList}
+                      )
 
 
 def offer(response):
     offers = JobOffer.objects.all()
-    perPage = 2
+    perPage = 3
     p = Paginator(offers, perPage)
     page = response.GET.get('page')
     offersList = p.get_page(page)
@@ -42,8 +51,7 @@ def offer(response):
     return render(response, "SZO/offer.html",
                   {"offers": offers,
                    "offersList": offersList,
-                   "nums": nums,
-                   "p": p}
+                   "nums": nums}
                   )
 
 

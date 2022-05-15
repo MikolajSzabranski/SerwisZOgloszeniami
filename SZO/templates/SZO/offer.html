@@ -30,6 +30,9 @@
         {% if offersList.has_previous %}
         <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
         <li class="page-item"><a class="page-link" href="?page={{ offersList.previous_page_number }}">Prev</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link">&laquo First</a></li>
+        <li class="page-item disabled"><a class="page-link">Prev</a></li>
         {% endif %}
 
         {% for i in nums %}
@@ -38,8 +41,10 @@
 
         {% if offersList.has_next %}
         <li class="page-item"><a class="page-link" href="?page={{ offersList.next_page_number }}">Next</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{ offersList.paginator.num_pages }}">&raquo Last</a>
-        </li>
+        <li class="page-item"><a class="page-link" href="?page={{ offersList.paginator.num_pages }}">&raquo Last</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link">Next</a></li>
+        <li class="page-item disabled"><a class="page-link">&raquo Last</a></li>
         {% endif %}
     </ul>
 </nav>

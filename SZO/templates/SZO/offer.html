@@ -17,15 +17,26 @@
     </select>
 </div><br><br>
 <div class="jobOffer">
-{% for offer in offersList %}
+    {% for offer in offersList %}
     <div class="card">
         <div class="card-body">
             <h5>{{ offer.getTitle }}</h5>
             <p class="single-offer">{{ offer.getText }}<br>
-                Host: {{ offer.getUser }}  City: {{ offer.getCity }} Tel: {{ offer.getTel }}</p>
+                Host: {{ offer.getUser }} City: {{ offer.getCity }} Tel: {{ offer.getTel }}</p>
+
+            <p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample1"
+                    aria-expanded="false" aria-controls="multiCollapseExample1">Read more
+            </button></p>
+
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    Test rozwijania
+                </div>
+            </div>
+
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
 </div>
 
 <!-- Pagination -->
@@ -63,6 +74,8 @@ function myFunction() {
   var x = document.getElementById("selectBox").value;
 }
 
+
+
 </script>
 
 <style>
@@ -85,7 +98,7 @@ div.jobOffer::-webkit-scrollbar {
 }
 div.card-body{
     color:black;
-    font-size:1.2vw
+    font-size:1.2vw;
 }
 *{
   overflow-y: scroll;
@@ -94,6 +107,7 @@ div.card-body{
 *::-webkit-scrollbar {
   display: none;
 }
+
 </style>
 
 {% endblock %}

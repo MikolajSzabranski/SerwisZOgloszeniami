@@ -17,7 +17,7 @@ from .models import JobOffer
 # Create your views here.
 def home(request):
     offers = JobOffer.objects.all()
-    perPage = 2
+    perPage = 3
     p = Paginator(offers, perPage)
     page = request.GET.get('page')
     offersList = p.get_page(page)

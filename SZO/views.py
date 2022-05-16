@@ -42,7 +42,7 @@ def home(request):
 
 def offer(response):
     offers = JobOffer.objects.all()
-    perPage = 3
+    perPage = 5
     p = Paginator(offers, perPage)
     page = response.GET.get('page')
     offersList = p.get_page(page)
@@ -62,11 +62,11 @@ def addOffer(response):
         # if form.is_valid() and (JobOffer.objects.filter(username='myname', status=0).count() <= 3 or user.groups.filter(name="premium").exists()):
         if form.is_valid():
             user = response.user
-            text = form.cleaned_data['text']
             title = form.cleaned_data['title']
+            text = form.cleaned_data['text']
             city = form.cleaned_data['city']
             tel_num = form.cleaned_data['tel_number']
-            newOffer = JobOffer(user=user, text=text, title=title, city=city, tel_number=tel_num)
+            newOffer = JobOffer(user=user, title=title, text=text, city=city, tel_number=tel_num)
             newOffer.save()
             return redirect("/offer")
     else:

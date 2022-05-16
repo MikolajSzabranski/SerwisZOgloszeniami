@@ -8,7 +8,7 @@
     <h1 class="header-1">Current list of offers</h1>
 </header>
 
-<label for="selectBox">Number of ads per page: </label>
+<label for="selectBox">Ads per page: </label>
 <div class="perPage">
     <select id="selectBox">
         <option value="5" onclick="myFunction()">5</option>
@@ -20,8 +20,8 @@
 {% for offer in offersList %}
     <div class="card">
         <div class="card-body">
-            <h5>Title: {{ offer.getTitle }}</h5>
-            <p class="single-offer"> Text: {{ offer.getText }}<br>
+            <h5>{{ offer.getTitle }}</h5>
+            <p class="single-offer">{{ offer.getText }}<br>
                 Host: {{ offer.getUser }}  City: {{ offer.getCity }} Tel: {{ offer.getTel }}</p>
         </div>
     </div>
@@ -68,6 +68,8 @@ function myFunction() {
 <style>
 h5{
     font-size: 1.6vw;
+    color:red;
+    margin-left:16px;
 }
 div.jobOffer {
   overflow-y: scroll;
@@ -77,9 +79,19 @@ div.jobOffer {
   width: 60vw;
   height: 55vh;
 }
+div.jobOffer::-webkit-scrollbar {
+  display: none;
+}
 div.card-body{
-    color:blue;
+    color:black;
     font-size:1.2vw
+}
+*{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 </style>
 

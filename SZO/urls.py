@@ -7,7 +7,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    # path('accounts/google/login/', auth_views.LoginView.as_view(template_name="registration/login.html"),name="loginGoogle"),
+    # path('accounts/google/login/', auth_views.LoginView.as_view(template_name="registration/login.html"),
+    #      name="loginGoogle"),
 
     path("", views.home, name="home"),
     path("", include("django.contrib.auth.urls")),

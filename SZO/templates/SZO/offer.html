@@ -20,10 +20,10 @@
 <div class="searchArea">
     <form class="d-flex" method="POST" action="{% url 'offer' %}">
         <label for="selectBox">Per page: </label>
-        <select id="selectBox" name="selectBox" onload="set({{ perPage }});" autocomplete="on">
-            <option value="5"  onclick="myFunction()">5</option>
-            <option value="10" onclick="myFunction()">10</option>
-            <option value="30" onclick="myFunction()">30</option>
+        <select id="selectBox" name="selectBox" autocomplete="on">
+            <option value="5" >5</option>
+            <option value="10">10</option>
+            <option value="30">30</option>
         </select>
         {% csrf_token %}
         <div class="inputSearch"><input class="form-control me-2" type="search" placeholder="Search offers"
@@ -88,15 +88,5 @@
 {% else %}
 <h1>Access denied</h1>
 {% endif %}
-
-<script>
-function set(pp) {
-    var s = document.getElementById('selectBox');
-    country.options[selectBox.options.selectedIndex].selected = true;
-}
-
-</script>
-
-
 {% endblock %}
 

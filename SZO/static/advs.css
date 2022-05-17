@@ -4,11 +4,19 @@ h5{
     color:red;
     margin-left:16px;
 }
-div.switch{
-
+.switch{
+    position:relative;
+    display:flex;
+    z-index:1;
+    align-items:right;
+    justify-content:right;
+    margin-right: 30vw;
 }
 div.delete {
-    align: center;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 div.searchArea{
   overflow-x: hidden;

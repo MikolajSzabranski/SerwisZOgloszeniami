@@ -1,15 +1,10 @@
-import json
-
-import app as app
 from django.contrib import messages
 from django.contrib.auth import logout, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import Group
-from django.shortcuts import render, redirect
-from captcha.fields import ReCaptchaField
-from django.core.mail import send_mail
-from django.conf import settings
 from django.core.paginator import Paginator
+from django.shortcuts import render, redirect
+
 from .forms import RegisterForm, CreateOffer
 from .models import JobOffer
 
@@ -21,7 +16,7 @@ def home(request):
     p = Paginator(offers, perPage)
     page = request.GET.get('page')
     offersList = p.get_page(page)
-    nums = "a" * offersList.paginator.num_pages
+    # nums = "a" * offersList.paginator.num_pages
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -41,8 +36,14 @@ def home(request):
 
 
 def offer(response):
-    offers = JobOffer.objects.all()
     perPage = 5
+    if response.method == "POST":
+        searched = response.POST['searched']
+        perPage = response.POST['selectBox']
+        offers = JobOffer.objects.filter(title__contains=searched)
+    else:
+        offers = JobOffer.objects.all()
+        searched = False
     p = Paginator(offers, perPage)
     page = response.GET.get('page')
     offersList = p.get_page(page)
@@ -50,8 +51,10 @@ def offer(response):
 
     return render(response, "SZO/offer.html",
                   {"offers": offers,
+                   "searched": searched,
                    "offersList": offersList,
-                   "nums": nums}
+                   "nums": nums,
+                   "perPage": perPage}
                   )
 
 
@@ -96,3 +99,9 @@ def premiumUser(response):
 def logout(response):
     logout(response)
     return render(response, "SZO/home.html", {})
+
+
+def delete(response, offer_id):
+    off = JobOffer.objects.get(pk=offer_id)
+    off.delete()
+    return redirect('home')

@@ -1,7 +1,7 @@
-from django.urls import path, include
-from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
+from django.urls import path, include
+
 from . import views
 
 urlpatterns = [
@@ -16,6 +16,7 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),
     path("addOffer/", views.addOffer, name="addOffer"),
     path("premiumUser/", views.premiumUser, name="premiumUser"),
+    path("delete/<offer_id>", views.delete, name="delete"),
 
     path('password_reset/',
          auth_views.PasswordResetView.as_view(template_name="passwordReset/password_reset_form.html"),

@@ -1,0 +1,58 @@
+h5{
+    font-size: 1.6vw;
+    font-family: Copperplate, Papyrus, fantasy;
+    color:red;
+    margin-left:16px;
+}
+div.switch{
+
+}
+div.delete {
+    align: center;
+}
+div.searchArea{
+  overflow-x: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 60vw;
+}
+div.inputSearch{
+    margin-left:4px;
+    margin-right:4px;
+    width: 46vw;
+}
+#selectBox{
+    height: 40px;
+    margin-left:3px;
+}
+div.jobOffer {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 60vw;
+  height: 54vh;
+}
+div.jobOffer::-webkit-scrollbar {
+  display: none;
+}
+div.card{
+    margin-bottom:4px;
+}
+div.card-body{
+    color:black;
+    font-size:1.2vw;
+}
+*{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+div.notLogged{
+    margin-top:15vh;
+    text-align:center;
+}

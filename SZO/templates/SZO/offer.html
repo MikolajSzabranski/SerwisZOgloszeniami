@@ -1,21 +1,38 @@
 {% extends 'SZO/base.html' %}
+{% load static %}
 
 {% block title %}List{% endblock %}
 
 {% block content %}
+<head>
+    <link href="{% static 'advs.css' %}" rel="stylesheet">
+</head>
 {% if user.is_authenticated %}
 <header>
+    {% if searched %}
+    <h1 class="header-1">You've searched for: "{{ searched }}"</h1>
+    {% else %}
     <h1 class="header-1">Current list of offers</h1>
+    {% endif %}
+
 </header>
 
-<label for="selectBox">Ads per page: </label>
-<div class="perPage">
-    <select id="selectBox">
-        <option value="5" onclick="myFunction()">5</option>
-        <option value="10" onclick="myFunction()">10</option>
-        <option value="30" onclick="myFunction()">30</option>
-    </select>
-</div><br><br>
+<div class="searchArea">
+    <form class="d-flex" method="POST" action="{% url 'offer' %}">
+        <label for="selectBox">Per page: </label>
+        <select id="selectBox" name="selectBox" onload="set({{ perPage }});" autocomplete="on">
+            <option value="5"  onclick="myFunction()">5</option>
+            <option value="10" onclick="myFunction()">10</option>
+            <option value="30" onclick="myFunction()">30</option>
+        </select>
+        {% csrf_token %}
+        <div class="inputSearch"><input class="form-control me-2" type="search" placeholder="Search offers"
+                                        aria-label="Search" name="searched"></div>
+        <div class="buttonSearch">
+            <button class="btn btn-outline-success" type="submit">Apply</button>
+        </div>
+    </form>
+</div>
 <div class="jobOffer">
     {% for offer in offersList %}
     <div class="card">
@@ -24,9 +41,12 @@
             <p class="single-offer">{{ offer.getText }}<br>
                 Host: {{ offer.getUser }} City: {{ offer.getCity }} Tel: {{ offer.getTel }}</p>
 
-            <p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample1"
-                    aria-expanded="false" aria-controls="multiCollapseExample1">Read more
-            </button></p>
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                        data-target="#multiCollapseExample1"
+                        aria-expanded="false" aria-controls="multiCollapseExample1">Read more
+                </button>
+            </p>
 
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card card-body">
@@ -70,45 +90,13 @@
 {% endif %}
 
 <script>
-function myFunction() {
-  var x = document.getElementById("selectBox").value;
+function set(pp) {
+    var s = document.getElementById('selectBox');
+    country.options[selectBox.options.selectedIndex].selected = true;
 }
-
-
 
 </script>
 
-<style>
-h5{
-    font-size: 1.6vw;
-    font-family: Copperplate, Papyrus, fantasy;
-    color:red;
-    margin-left:16px;
-}
-div.jobOffer {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 60vw;
-  height: 55vh;
-}
-div.jobOffer::-webkit-scrollbar {
-  display: none;
-}
-div.card-body{
-    color:black;
-    font-size:1.2vw;
-}
-*{
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
-
-</style>
 
 {% endblock %}
 

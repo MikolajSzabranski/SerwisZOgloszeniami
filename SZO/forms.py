@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 # from matplotlib import widgets
 from .models import typesUser, JobOffer
-from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, ChoiceField, RadioSelect, CharField
+from django.forms import HiddenInput, ModelForm, TextInput, EmailInput, PasswordInput, ChoiceField, RadioSelect, CharField
 from django.core.validators import RegexValidator
 
 
@@ -51,10 +51,6 @@ class CreateOffer(ModelForm):
     city = TextInput()
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
     tel_number = models.CharField(validators=[phoneNumberRegex], max_length=9, unique=True)
-
-    # tel_number = forms.IntegerField(
-    #     max_value=999999999, min_value=100000000, help_text='Enter telephone number:')
-
     class Meta:
         model = JobOffer
         fields = ('title', 'text', 'city', 'tel_number')

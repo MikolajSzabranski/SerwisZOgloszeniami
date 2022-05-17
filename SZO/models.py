@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from captcha.fields import ReCaptchaField
 
 # Create your models here.
 
@@ -42,3 +41,4 @@ class JobOffer(models.Model):
 
     def getUsername(self):
         return str(self.user)
+    

@@ -58,23 +58,24 @@ def offer(response):
                   )
 
 
-def addOffer(response):
-    if response.method == "POST":
-        form = CreateOffer(response.POST)
-        user = response.user
+def addOffer(request):
+    if request.method == "POST":
+        form = CreateOffer(request.POST, request.FILES)
+        user = request.user
         # if form.is_valid() and (JobOffer.objects.filter(username='myname', status=0).count() <= 3 or user.groups.filter(name="premium").exists()):
         if form.is_valid():
-            user = response.user
+            user = request.user
             title = form.cleaned_data['title']
             text = form.cleaned_data['text']
             city = form.cleaned_data['city']
             tel_num = form.cleaned_data['tel_number']
-            newOffer = JobOffer(user=user, title=title, text=text, city=city, tel_number=tel_num)
+            image = form.cleaned_data['image']
+            newOffer = JobOffer(user=user, title=title, text=text, city=city, tel_number=tel_num, image=image)
             newOffer.save()
             return redirect("/offer")
     else:
         form = CreateOffer()
-    return render(response, "SZO/addOffer.html", {"form": form})
+    return render(request, "SZO/addOffer.html", {"form": form})
 
 
 def register(response):

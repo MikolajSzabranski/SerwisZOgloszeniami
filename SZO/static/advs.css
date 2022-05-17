@@ -1,14 +1,13 @@
 h5{
     font-size: 1.6vw;
     font-family: Copperplate, Papyrus, fantasy;
-    color:red;
+    color: rgb(255, 0, 0);
     margin-left:16px;
 }
 .switch{
     position:relative;
     display:flex;
     z-index:1;
-    align-items:right;
     justify-content:right;
     margin-right: 30vw;
 }
@@ -30,7 +29,7 @@ div.inputSearch{
     width: 46vw;
 }
 #selectBox{
-    height: 40px;
+    height: 30px;
     margin-left:3px;
 }
 div.jobOffer {
@@ -52,6 +51,8 @@ div.card{
 div.card-body{
     color:black;
     font-size:1.2vw;
+    display: flex;
+    align-items: center;
 }
 *{
   overflow-y: scroll;
@@ -63,4 +64,15 @@ div.card-body{
 div.notLogged{
     margin-top:15vh;
     text-align:center;
+}
+img{
+    width: 20vw;
+    float: right;
+}
+#card-content{
+    float: left;
+    width: 90%;
+}
+.delete{
+    transform: scale(1.3);
 }

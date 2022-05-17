@@ -4,89 +4,86 @@
 {% block title %}List{% endblock %}
 
 {% block content %}
-<head>
-    <link href="{% static 'advs.css' %}" rel="stylesheet">
-</head>
-{% if user.is_authenticated %}
-<header>
-    {% if searched %}
-    <h1 class="header-1">You've searched for: "{{ searched }}"</h1>
-    {% else %}
-    <h1 class="header-1">Current list of offers</h1>
-    {% endif %}
+    <head>
+        <link href="{% static 'advs.css' %}" rel="stylesheet">
+    </head>
+    {% if user.is_authenticated %}
+        <header>
+            {% if searched %}
+                <h1 class="header-1">You've searched for: "{{ searched }}"</h1>
+            {% else %}
+                <h1 class="header-1">Current list of offers</h1>
+            {% endif %}
 
-</header>
+        </header>
 
-<div class="searchArea">
-    <form class="d-flex" method="POST" action="{% url 'offer' %}">
-        <label for="selectBox">Per page: </label>
-        <select id="selectBox" name="selectBox" autocomplete="on">
-            <option value="5" >5</option>
-            <option value="10">10</option>
-            <option value="30">30</option>
-        </select>
-        {% csrf_token %}
-        <div class="inputSearch"><input class="form-control me-2" type="search" placeholder="Search offers"
-                                        aria-label="Search" name="searched"></div>
-        <div class="buttonSearch">
-            <button class="btn btn-outline-success" type="submit">Apply</button>
-        </div>
-    </form>
-</div>
-<div class="jobOffer">
-    {% for offer in offersList %}
-    <div class="card">
-        <div class="card-body">
-            <h5>{{ offer.getTitle }}</h5>
-            <p class="single-offer">{{ offer.getText }}<br>
-                Host: {{ offer.getUser }} City: {{ offer.getCity }} Tel: {{ offer.getTel }}</p>
-
-            <p>
-                <button class="btn btn-primary" type="button" data-toggle="collapse"
-                        data-target="#multiCollapseExample1"
-                        aria-expanded="false" aria-controls="multiCollapseExample1">Read more
-                </button>
-            </p>
-
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <div class="card card-body">
-                    Test rozwijania
+        <div class="searchArea">
+            <form class="d-flex" method="POST" action="{% url 'offer' %}">
+                <label for="selectBox">Per page: </label>
+                <select id="selectBox" name="selectBox" autocomplete="on">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="30">30</option>
+                </select>
+                {% csrf_token %}
+                <div class="inputSearch"><input class="form-control me-2" type="search" placeholder="Search offers"
+                                                aria-label="Search" name="searched"></div>
+                <div class="buttonSearch">
+                    <button class="btn btn-outline-success" type="submit">Apply</button>
                 </div>
-            </div>
-
+            </form>
         </div>
-    </div>
-    {% endfor %}
-</div>
+        <div class="jobOffer">
+            {% for offer in offersList %}
+                <div class="card">
+                    <div class="card-body">
+                        <div id="card-content">
+                            <h5>{{ offer.getTitle }}</h5>
+                            <p class="single-offer">{{ offer.getText }}<br>
+                                Tel: {{ offer.getTel }}</p>
+                        </div>
+                        {% if offer.image.url != False %}
+                            <div>
+                                <img src="{{ offer.image.url }}"/>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
 
-<!-- Pagination -->
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        {% if offersList.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{ offersList.previous_page_number }}">Prev</a></li>
-        {% else %}
-        <li class="page-item disabled"><a class="page-link">&laquo First</a></li>
-        <li class="page-item disabled"><a class="page-link">Prev</a></li>
-        {% endif %}
+        <!-- Pagination -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if offersList.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ offersList.previous_page_number }}">Prev</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link">&laquo First</a></li>
+                    <li class="page-item disabled"><a class="page-link">Prev</a></li>
+                {% endif %}
 
-        {% for i in nums %}
-        <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter}}</a></li>
-        {% endfor %}
+                {% for i in nums %}
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                {% endfor %}
 
-        {% if offersList.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ offersList.next_page_number }}">Next</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{ offersList.paginator.num_pages }}">&raquo Last</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled"><a class="page-link">Next</a></li>
-        <li class="page-item disabled"><a class="page-link">&raquo Last</a></li>
-        {% endif %}
-    </ul>
-</nav>
-<!-- End of pagination -->
-{% else %}
-<h1>Access denied</h1>
-{% endif %}
+                {% if offersList.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ offersList.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="?page={{ offersList.paginator.num_pages }}">&raquo
+                        Last</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link">Next</a></li>
+                    <li class="page-item disabled"><a class="page-link">&raquo Last</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- End of pagination -->
+    {% else %}
+        <h1>Access denied</h1>
+    {% endif %}
 {% endblock %}
 

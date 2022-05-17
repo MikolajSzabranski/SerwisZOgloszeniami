@@ -44,9 +44,11 @@
         {% if request.user.username == offer.getUsername %}
         <div class="card">
             <div class="card-body">
-                <h5>{{ offer.getTitle }}</h5>
-                <p class="single-offer">{{ offer.getText }}<br>
-                    Tel: {{ offer.getTel }}</p>
+                <div id="card-content">
+                    <h5>{{ offer.getTitle }}</h5>
+                    <p class="single-offer">{{ offer.getText }}<br>
+                        Tel: {{ offer.getTel }}</p>
+                </div>
                 <div class="delete"><a href="{% url 'delete' offer.id %}" class="btn btn-outline-danger">Delete</a></div>
             </div>
         </div>

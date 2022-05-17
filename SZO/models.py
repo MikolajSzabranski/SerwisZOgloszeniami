@@ -20,6 +20,7 @@ class JobOffer(models.Model):
     text = models.CharField(max_length=1000)
     city = models.CharField(max_length=100, default='Warszawa')
     tel_number = models.CharField(max_length=9)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return self.text

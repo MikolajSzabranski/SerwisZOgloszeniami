@@ -31,9 +31,9 @@
     {% endif %}
     <script>
         function initMap(callback) {
-            let lat = {{ offer.getLatitude }};
-            let lng = {{ offer.getLongitude }};
-            const offerPos = {lat: 52.2297, lng: 21.0122};
+            let lat = parseInt({{ offer.getLatitude }});
+            let lng = parseInt({{ offer.getLongitude }});
+            const offerPos = {lat: lat, lng: lng};
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 13,
                 center: offerPos,
@@ -53,7 +53,7 @@
     <style>
         #map {
             position: relative;
-            margin-top: 1px;
+            margin-top: -120px;
             width: 40vw;
             height: 30vw;
             border-style: solid;

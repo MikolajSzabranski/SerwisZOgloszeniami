@@ -70,6 +70,7 @@ div.notLogged{
 }
 img{
     width: 20vw;
+    object-fit: contain;
     float: right;
 }
 #card-content{

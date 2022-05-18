@@ -6,11 +6,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    # path('accounts/google/login/', auth_views.LoginView.as_view(template_name="registration/login.html"),
-    #      name="loginGoogle"),
-
     path("", views.home, name="home"),
+    path('accounts/', include('allauth.urls')),
+    # path('accounts/signup/', auth_views.auth_login.as_view(template_name="register/register.html")),
     path("", include("django.contrib.auth.urls")),
     path("register/", views.register, name="register"),
     path("offer/", views.offer, name="offer"),

@@ -27,13 +27,12 @@ INSTALLED_APPS = [
     'SZO.apps.SzoConfig',
     'crispy_forms',
     'django.contrib.sites',
+    'social_django',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 ]
-
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,10 +71,8 @@ WSGI_APPLICATION = 'SerwisZOgloszeniami.wsgi.application'
 AUTHENTICATION_BACKENDS = {
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOAuth2',
 }
-
-# SOCIAL_AUTH_GOOGLE_OATH2_KEY = "980361173803-r9lptd2n7pjuomfh3s3qfud95c39k2t7.apps.googleusercontent.com"
-# SOCIAL_AUTH_GOOGLE_OATH2_SECRET = "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"
 
 DATABASES = {
     'default': {
@@ -84,14 +81,13 @@ DATABASES = {
     }
 }
 
+SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
+        'APP': {
+            'client_id': '980361173803-r9lptd2n7pjuomfh3s3qfud95c39k2t7.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
         }
     }
 }
@@ -146,7 +142,7 @@ LOGOUT_REDIRECT_URL = "/"
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 
@@ -160,6 +156,3 @@ EMAIL_HOST_PASSWORD = 'mailservice'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
-
-
-

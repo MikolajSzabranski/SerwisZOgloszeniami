@@ -53,6 +53,7 @@ div.card-body{
     font-size:1.2vw;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 *{
   overflow-y: scroll;

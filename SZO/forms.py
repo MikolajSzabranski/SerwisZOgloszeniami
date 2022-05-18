@@ -53,13 +53,17 @@ class CreateOffer(ModelForm):
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
     tel_number = models.CharField(validators=[phoneNumberRegex], max_length=9, unique=True)
     image = models.ImageField(upload_to='images/')
+    latitude = TextInput()
+    longitude = TextInput()
 
     class Meta:
         model = JobOffer
-        fields = ('title', 'text', 'city', 'tel_number', 'image')
+        fields = ('title', 'text', 'city', 'tel_number', 'image', 'latitude', 'longitude')
         widgets = {
             'title': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'text': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'city': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'tel_number': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
+            'latitude' : HiddenInput(attrs={'id': 'latitude'}),
+            'longitude' : HiddenInput(attrs={'id': 'longitude'}),
         }

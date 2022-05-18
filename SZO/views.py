@@ -70,7 +70,10 @@ def addOffer(request):
             city = form.cleaned_data['city']
             tel_num = form.cleaned_data['tel_number']
             image = form.cleaned_data['image']
-            newOffer = JobOffer(user=user, title=title, text=text, city=city, tel_number=tel_num, image=image)
+            latitude = form.cleaned_data['latitude']
+            longitude = form.cleaned_data['longitude']
+            newOffer = JobOffer(user=user, title=title, text=text, city=city, tel_number=tel_num, image=image,
+                                latitude=latitude, longitude=longitude)
             newOffer.save()
             return redirect("/offer")
     else:
@@ -106,3 +109,8 @@ def delete(response, offer_id):
     off = JobOffer.objects.get(pk=offer_id)
     off.delete()
     return redirect('home')
+
+
+def details(response, offer_id):
+    off = JobOffer.objects.get(pk=offer_id)
+    return render(response, "SZO/offerDetails.html", {'offer': off, 'offer_id': offer_id})

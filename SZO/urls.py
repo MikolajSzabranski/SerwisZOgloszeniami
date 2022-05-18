@@ -18,6 +18,7 @@ urlpatterns = [
     path("addOffer/", views.addOffer, name="addOffer"),
     path("premiumUser/", views.premiumUser, name="premiumUser"),
     path("delete/<offer_id>", views.delete, name="delete"),
+    path("details/<offer_id>", views.details, name="details"),
 
     path('password_reset/',
          auth_views.PasswordResetView.as_view(template_name="passwordReset/password_reset_form.html"),

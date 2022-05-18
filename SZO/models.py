@@ -21,6 +21,8 @@ class JobOffer(models.Model):
     city = models.CharField(max_length=100, default='Warszawa')
     tel_number = models.CharField(max_length=9)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    latitude = models.CharField(max_length=200,default=0)
+    longitude = models.CharField(max_length=200, default=0)
 
     def __str__(self):
         return self.text
@@ -42,4 +44,9 @@ class JobOffer(models.Model):
 
     def getUsername(self):
         return str(self.user)
-    
+
+    def getLatitude(self):
+        return str(self.latitude)
+
+    def getLongitude(self):
+        return str(self.longitude)

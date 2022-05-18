@@ -6,56 +6,62 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<head>
-    <link href="{% static 'advs.css' %}" rel="stylesheet">
-</head>
-{% if user.is_authenticated %}
-<header>
-    <h1 class="header-1">Logged user: {{user}}</h1>
-</header>
-<div class="switch">
-    <button onclick="toggle();" class="btn btn-lg btn-primary btn-block">Change password / Check my offers</button>
-</div>
-
-<form id="id_password_change_form" method="POST" class="form-signin" hidden>
-    {% csrf_token %}
-    <br><br>
-    <h1 class="h3 mb-3 font-weight-normal">Change password</h1>
-    <input name="old_password" class="form-control" placeholder="Old password" type="password" id="id_old_password"
-           required="true"><br>
-    <input name="new_password1" class="form-control" placeholder="New password" type="password" id="id_new_password1"
-           required="true"><br>
-    <input name="new_password2" class="form-control" placeholder="Confirm password" type="password"
-           id="id_new_password2" required="true"><br>
-
-    {% for field in form %}
-    {% for error in field.errors %}
-    <p style="color: red">{{ error }}</p>
-    {% endfor %}
-    {% endfor %}
-
-    <button id="id_submit_btn" class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
-</form>
-
-<div class="jobOffer">
-    <form id="myOwnOffer">
-        {% if user.groups.all.0.name == 'host' %}
-        {% for offer in offers %}
-        {% if request.user.username == offer.getUsername %}
-        <div class="card">
-            <div class="card-body">
-                <div id="card-content">
-                    <h5>{{ offer.getTitle }}</h5>
-                    <p class="single-offer">{{ offer.getText }}<br>
-                        Tel: {{ offer.getTel }}</p>
-                </div>
-                <div class="delete"><a href="{% url 'delete' offer.id %}" class="btn btn-outline-danger">Delete</a></div>
-            </div>
+    <head>
+        <link href="{% static 'advs.css' %}" rel="stylesheet">
+    </head>
+    {% if user.is_authenticated %}
+        <header>
+            <h1 class="header-1">Logged user: {{ user }}</h1>
+        </header>
+        <div class="switch">
+            <button onclick="toggle();" class="btn btn-lg btn-primary btn-block">Change password / Check my offers
+            </button>
         </div>
-        {% endif %}
-        {% endfor %}
 
-        <!--
+        <form id="id_password_change_form" method="POST" class="form-signin" hidden>
+            {% csrf_token %}
+            <br><br>
+            <h1 class="h3 mb-3 font-weight-normal">Change password</h1>
+            <input name="old_password" class="form-control" placeholder="Old password" type="password"
+                   id="id_old_password"
+                   required="true"><br>
+            <input name="new_password1" class="form-control" placeholder="New password" type="password"
+                   id="id_new_password1"
+                   required="true"><br>
+            <input name="new_password2" class="form-control" placeholder="Confirm password" type="password"
+                   id="id_new_password2" required="true"><br>
+
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+
+            <button id="id_submit_btn" class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+        </form>
+
+        <div class="jobOffer">
+            <form id="myOwnOffer">
+                {% if user.groups.all.0.name == 'host' %}
+                    {% for offer in offers %}
+                        {% if request.user.username == offer.getUsername %}
+                            <a href="/details/{{ offer.id }}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="card-content">
+                                            <h5>{{ offer.getTitle }}</h5>
+                                            <p class="single-offer">{{ offer.getText }}<br>
+                                                Tel: {{ offer.getTel }}</p>
+                                        </div>
+                                        <div class="delete"><a href="{% url 'delete' offer.id %}"
+                                                               class="btn btn-outline-danger">Delete</a></div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!--
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {% if offersList.has_previous %}
@@ -80,32 +86,32 @@
                 {% endif %}
             </ul>
         </nav> -->
-        {% endif %}
-    </form>
-</div>
-{% else %}
-<div class="notLogged">
-    <h1>You are not logged in!</h1><br>
-    <p>Login to use website <a href="/login">here</a></p>
-</div>
-{% endif %}
+                {% endif %}
+            </form>
+        </div>
+    {% else %}
+        <div class="notLogged">
+            <h1>You are not logged in!</h1><br>
+            <p>Login to use website <a href="/login">here</a></p>
+        </div>
+    {% endif %}
 
-<script>
-let toggle = () => {
-        let element = document.getElementById("id_password_change_form");
-        let element2 = document.getElementById("myOwnOffer");
-        let hidden = element.getAttribute("hidden");
-        let hidden2 = element2.getAttribute("hidden");
+    <script>
+        let toggle = () => {
+            let element = document.getElementById("id_password_change_form");
+            let element2 = document.getElementById("myOwnOffer");
+            let hidden = element.getAttribute("hidden");
+            let hidden2 = element2.getAttribute("hidden");
 
-        if (!hidden2) {
-           element.removeAttribute("hidden");
-           element2.setAttribute("hidden", "hidden");
-        } else {
-           element.setAttribute("hidden", "hidden");
-           element2.removeAttribute("hidden");
+            if (!hidden2) {
+                element.removeAttribute("hidden");
+                element2.setAttribute("hidden", "hidden");
+            } else {
+                element.setAttribute("hidden", "hidden");
+                element2.removeAttribute("hidden");
+            }
         }
-      }
 
-</script>
+    </script>
 
 {% endblock %}

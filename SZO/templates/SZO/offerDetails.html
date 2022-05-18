@@ -1,0 +1,64 @@
+{% extends 'SZO/base.html' %}
+{% load static %}
+
+{% block title %}Offer Details{% endblock %}
+
+{% block content %}
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link href="{% static 'advs.css' %}" rel="stylesheet">
+    </head>
+    {% if user.is_authenticated %}
+        <div class="jobOffer">
+            <div class="card">
+                <div class="card-body">
+                    <div id="card-content">
+                        <h5>{{ offer.getTitle }}</h5>
+                        <p class="single-offer">{{ offer.getText }}<br>
+                            Tel: {{ offer.getTel }}</p>
+                    </div>
+                    {% if offer.image.url != False %}
+                        <div>
+                            <img src="{{ offer.image.url }}"/>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="map"></div>
+    {% else %}
+        <h1>Access denied</h1>
+    {% endif %}
+    <script>
+        function initMap(callback) {
+            let lat = {{ offer.getLatitude }};
+            let lng = {{ offer.getLongitude }};
+            const offerPos = {lat: 52.2297, lng: 21.0122};
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: offerPos,
+            });
+            const marker = new google.maps.Marker({
+                position: offerPos,
+                map: map,
+                draggable: false,
+            });
+        }
+        window.initMap = initMap;
+    </script>
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCduRgbe7BF_YoWOdCKJPAS46Yc5N0lMBM&callback=initMap"
+            defer
+    ></script>
+    <style>
+        #map {
+            position: absolute;
+            margin-top: 18vw;
+            width: 40vw;
+            height: 30vw;
+            border-style: solid;
+            border-color: #786f0d;
+        }
+    </style>
+{% endblock %}
+

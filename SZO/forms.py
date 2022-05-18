@@ -30,7 +30,6 @@ class RegisterForm(UserCreationForm):
                 attrs={'class': "form-control", 'style': 'max-width: 25vw;', 'placeholder': 'Username'}),
             'email': TextInput(
                 attrs={'class': "form-control", 'style': 'max-width: 25vw;', 'placeholder': 'example@gmail.com'})
-
         }
 
 
@@ -64,6 +63,6 @@ class CreateOffer(ModelForm):
             'text': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'city': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'tel_number': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
-            'latitude' : HiddenInput(attrs={'id': 'latitude'}),
-            'longitude' : HiddenInput(attrs={'id': 'longitude'}),
+            'latitude': HiddenInput(attrs={'id': 'latitude'}),
+            'longitude': HiddenInput(attrs={'id': 'longitude'}),
         }

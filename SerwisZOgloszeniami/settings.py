@@ -26,12 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SZO.apps.SzoConfig',
     'crispy_forms',
+    'paywix',
     'django.contrib.sites',
     'social_django',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'PayU.apps.PayuConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +141,14 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/offer"
 LOGOUT_REDIRECT_URL = "/"
+
+PAYU_CONFIG = {
+    "merchant_key": "3o6jgxhp",
+    "merchant_salt": "67bAgZX1B3",
+    "mode": "test",
+    "success_url": "http://127.0.0.1:8000/payu/success",
+    "failure_url": "http://127.0.0.1:8000/payu/failure"
+}
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True

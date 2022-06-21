@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     # path('accounts/signup/', auth_views.auth_login.as_view(template_name="register/register.html")),
     path("", include("django.contrib.auth.urls")),
+    path("", include("PayU.urls")),
     path("register/", views.register, name="register"),
     path("offer/", views.offer, name="offer"),
     path("logout/", views.logout, name="logout"),

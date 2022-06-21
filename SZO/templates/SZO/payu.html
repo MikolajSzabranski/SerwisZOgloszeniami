@@ -1,0 +1,50 @@
+{% extends 'SZO/base.html' %}
+{% load static %}
+{% block title %}Buy{% endblock %}
+{% block content %}
+{% if user.groups.all.0.name != 'seeker' %}
+    <head>
+        <meta charset="UTF-8">
+        <link href="{% static 'payu.css' %}" rel="stylesheet">
+    </head>
+    <body>
+    <form action="{% url 'payu' %}" method="post" name="payuForm">
+        {% csrf_token %}
+        <tr>
+            <h4>Complete your personal details</h4>
+        </tr>
+        <table class="center">
+            <tr hidden>
+                <td>Transaction ID:</td>
+                <td><input name="txnid" value="{{ posted.txnid|default:'' }}"/></td>
+            </tr>
+            <tr hidden>
+                <td>Amount:</td>
+                <td><input name="amount" value="{{ posted.amount|default:'' }}"/></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input id="inputPlace" name="firstname" id="firstname" value="{{ posted.firstname|default:'' }}"/></td>
+                <td>Last Name:</td>
+                <td><input id="inputPlace" name="lastname" id="lastname" value="{{ posted.lastname|default:'' }}"/></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input id="inputPlace" name="email" id="email" value="{{ posted.email|default:'' }}"/></td>
+                <td>Phone:</td>
+                <td><input id="inputPlace" name="phone" value="{{ posted.phone|default:'' }}"/></td>
+            </tr>
+            <tr hidden>
+                <td>Product Info:</td>
+                <td colspan="3"><textarea name="productinfo">{{ posted.productinfo|default:'' }}</textarea>
+                </td>
+            </tr>
+            <td colspan="4">
+                <button id="submitButton" type="submit" class="btn btn-primary btn-lg" value="SUBMIT">Submit</button>
+            </td>
+        </table>
+    </form>
+    </body>
+    </html>
+{% endif %}
+{% endblock %}

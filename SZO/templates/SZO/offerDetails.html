@@ -7,6 +7,8 @@
     <head>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <link href="{% static 'advs.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     </head>
     {% if user.is_authenticated %}
         <div class="jobOffer">
@@ -30,7 +32,7 @@
         <h1>Access denied</h1>
     {% endif %}
     <script>
-        function initMap(callback) {
+        function initMap1(callback) {
             let lat = parseInt({{ offer.getLatitude }});
             let lng = parseInt({{ offer.getLongitude }});
             const offerPos = {lat: lat, lng: lng};
@@ -44,7 +46,7 @@
                 draggable: false,
             });
         }
-        window.initMap = initMap;
+        window.initMap = initMap1;
     </script>
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCduRgbe7BF_YoWOdCKJPAS46Yc5N0lMBM&callback=initMap"
@@ -55,7 +57,7 @@
             position: relative;
             margin-top: -120px;
             width: 40vw;
-            height: 30vw;
+            height: 20vw;
             border-style: solid;
             border-color: #786f0d;
         }

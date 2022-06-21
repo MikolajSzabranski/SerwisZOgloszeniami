@@ -30,6 +30,8 @@
     <script>
         function initMap(callback) {
             const warsawPos = {lat: 52.2297, lng: 21.0122};
+            const geocoder = new google.maps.Geocoder();
+            const infowindow = new google.maps.InfoWindow();
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 13,
                 center: warsawPos,
@@ -42,8 +44,46 @@
             marker.addListener("click", () => {
                 document.getElementById('latitude').value = marker.getPosition().lat();
                 document.getElementById('longitude').value = marker.getPosition().lng();
+                geocodeLatLng(geocoder, map, infowindow, marker);
             });
+            let cityForm = document.getElementById("city");
+            cityForm.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                   var address = document.getElementById('city').value;
+                    geocoder.geocode( { 'address': address}, function(results, status) {
+                      if (status == 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        marker.setPosition(results[0].geometry.location);
+                      } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                      }
+                    });
+                }
+        })
         }
+        function geocodeLatLng(geocoder, map, infowindow, marker) {
+          const latlng = {
+            lat: marker.getPosition().lat(),
+            lng: marker.getPosition().lng(),
+          };
+
+          geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+              if (response.results[0]) {
+                  let address = response.results[0].formatted_address;
+                  let arr = address.split(", ");
+                  let city = arr[arr.length -2];
+                  arr = city.split(" ");
+                  city = arr[1];
+                  document.getElementById("city").value = city.toString();
+              } else {
+                window.alert("No results found");
+              }
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+        }
+
         window.initMap = initMap;
     </script>
     <script

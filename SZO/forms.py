@@ -61,7 +61,7 @@ class CreateOffer(ModelForm):
         widgets = {
             'title': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'text': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
-            'city': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
+            'city': TextInput(attrs={'class': 'offer-form-control', 'id': 'city', 'style': 'max-width: 25vw'}),
             'tel_number': TextInput(attrs={'class': 'offer-form-control', 'style': 'max-width: 25vw'}),
             'latitude': HiddenInput(attrs={'id': 'latitude'}),
             'longitude': HiddenInput(attrs={'id': 'longitude'}),
